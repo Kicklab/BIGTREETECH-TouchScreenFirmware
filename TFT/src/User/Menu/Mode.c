@@ -68,7 +68,11 @@ void infoMenuSelect(void)
     case LCD12864:
 
       #ifdef BUZZER_PIN
-        Buzzer_DeConfig();  // Disable buzzer in LCD12864 Simulations mode.
+        #ifndef ST7920_ONSCREEN_CONTROLS
+          Buzzer_DeConfig();  // Disable buzzer in LCD12864 Simulations mode.
+        #else
+          Buzzer_Config();
+        #endif
       #endif
 
       #ifdef LED_COLOR_PIN
